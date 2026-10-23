@@ -1,0 +1,99 @@
+<h1 class="mb-3">Law Enforcement</h1>
+<p class="lead">
+  Malaysia has laws that protect victims of domestic violence and gender-based
+  violence. These are the main ones.
+</p>
+
+<%# Domestic Violence Act 1994 %>
+<div class="card mb-4 border-danger">
+  <div class="card-header bg-danger text-white">
+    <strong>Domestic Violence Act 1994 (Act 521)</strong>
+  </div>
+  <div class="card-body">
+    <p>
+      This is the main law on domestic violence. It was amended in 2017 to give
+      victims faster and wider protection. It offers three kinds of protection orders:
+    </p>
+    <div class="row g-3">
+      <div class="col-12 col-md-4">
+        <div class="p-3 border rounded h-100">
+          <h5>Emergency Protection Order (EPO)</h5>
+          <p class="mb-0">
+            Issued by a social welfare officer, at any time including weekends,
+            so a victim does not have to wait for the courts. It lasts 7 days.
+          </p>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="p-3 border rounded h-100">
+          <h5>Interim Protection Order (IPO)</h5>
+          <p class="mb-0">
+            Issued by a magistrate. It protects the victim while the police
+            investigate the case.
+          </p>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="p-3 border rounded h-100">
+          <h5>Protection Order (PO)</h5>
+          <p class="mb-0">
+            Issued by the court. It protects the victim during the criminal
+            court proceedings.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%# Anti-Sexual Harassment Act 2022 %>
+<div class="card mb-4">
+  <div class="card-header bg-dark text-white">
+    <strong>Anti-Sexual Harassment Act 2022</strong>
+  </div>
+  <div class="card-body">
+    <p>
+      This law came into force on 28 March 2023. It covers sexual harassment in
+      all areas of everyday life, not only at work.
+    </p>
+    <p class="mb-0">
+      It created the <strong>Tribunal for Anti-Sexual Harassment</strong>, a faster
+      and cheaper alternative to the civil courts. The Tribunal can order a public
+      apology, compensation of up to RM250,000, or attendance at a programme.
+      Making a complaint to the Tribunal does not stop you from also making a
+      police report.
+    </p>
+  </div>
+</div>
+
+<%# Penal Code %>
+<div class="card mb-4">
+  <div class="card-header bg-dark text-white">
+    <strong>Penal Code</strong>
+  </div>
+  <div class="card-body">
+    <p class="mb-0">
+      Violent acts such as causing hurt or sexual offences are also crimes under the
+      Penal Code. A victim can make a police report and the police can investigate
+      these acts as criminal offences.
+    </p>
+  </div>
+</div>
+
+<%# What a victim can do %>
+<h2 class="h4 mt-4 mb-3">What a victim can do</h2>
+<ol class="list-group list-group-numbered mb-4">
+  <li class="list-group-item">Get to a safe place if you can, and call 999 if you are in danger.</li>
+  <li class="list-group-item">Make a police report at the nearest police station.</li>
+  <li class="list-group-item">Ask for a protection order (EPO, IPO or PO).</li>
+  <li class="list-group-item">Contact a support organisation for advice and shelter.</li>
+</ol>
+
+<%# Sources %>
+<div class="alert alert-secondary small">
+  <strong>Sources:</strong> Domestic Violence (Amendment) Act 2017; Women's Aid
+  Organisation (wao.org.my); Anti-Sexual Harassment Act 2022. This page is general
+  information, not legal advice.
+  <%= link_to "Find enforcers", enforcer_path, class: "alert-link" %> or
+  <%= link_to "see the hotlines", hotline_path, class: "alert-link" %>.
+</div>

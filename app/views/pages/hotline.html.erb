@@ -1,0 +1,132 @@
+<%# Lab 3: everything on this page is controlled by hotline_controller.js %>
+<div data-controller="hotline">
+
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+  <h1 class="mb-0">Emergency Hotlines</h1>
+  <%# document.write() is used to build the printable card in a new window %>
+  <button type="button" class="btn btn-outline-danger" data-action="hotline#printCard">
+    Print my safety card
+  </button>
+</div>
+
+<%# Safety card shown here only if the browser blocks the popup window %>
+<div class="card mb-3 d-none" data-hotline-target="preview">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <span>Your safety card (made with document.write)</span>
+    <button type="button" class="btn-close" aria-label="Close" data-action="hotline#closePreview"></button>
+  </div>
+  <iframe class="w-100 border-0" style="height: 480px" title="Safety card" data-hotline-target="previewFrame"></iframe>
+</div>
+
+<%# Shows the time the open/closed badges were last checked (innerHTML) %>
+<p class="text-muted small" data-hotline-target="updated">Checking which lines are open...</p>
+
+<%# Big emergency box %>
+<div class="alert alert-danger text-center py-4">
+  <h2 class="h3 mb-1">In immediate danger?</h2>
+  <p class="display-4 fw-bold mb-2"><%= link_to "999", "tel:999", class: "text-danger text-decoration-none" %></p>
+  <p class="mb-0">Call the police. If you cannot speak, stay on the line.</p>
+</div>
+
+<%# Hotline cards. tel: links let phone users tap to call.
+    Lab 3: each line has data attributes (name, number, opening hours) that the
+    JavaScript reads to show an "Open now" badge, copy the number and print the card. %>
+<h2 class="h4 mt-4 mb-3">Support lines</h2>
+<div class="row g-4">
+
+  <div class="col-12 col-md-6">
+    <div class="card h-100 border-danger">
+      <div class="card-body">
+        <h5 class="card-title">Talian Kasih</h5>
+        <p class="text-muted small mb-2">Ministry of Women, Family and Community Development / JKM. Open 24 hours.</p>
+        <div data-hotline-target="line" data-name="Talian Kasih" data-number="15999" data-open="0" data-close="24">
+          <p class="mb-1">
+            Call: <%= link_to "15999", "tel:15999", class: "fw-bold" %>
+            <span class="badge ms-1" data-role="status"></span>
+            <button type="button" class="btn btn-link btn-sm p-0 ms-2" data-action="hotline#copy"
+                    data-hotline-name-param="Talian Kasih" data-hotline-number-param="15999">Copy</button>
+          </p>
+        </div>
+        <p class="mb-2">WhatsApp: <strong>019-261 5999</strong></p>
+        <p class="card-text small mb-0">Abuse, domestic violence, counselling and protection. You can also ask for an Emergency Protection Order.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-6">
+    <div class="card h-100 border-danger">
+      <div class="card-body">
+        <h5 class="card-title">Women's Aid Organisation (WAO)</h5>
+        <p class="text-muted small mb-2">Free shelter, counselling and crisis support.</p>
+        <div data-hotline-target="line" data-name="WAO Hotline" data-number="03-3000 8858">
+          <p class="mb-1">
+            Hotline: <%= link_to "03-3000 8858", "tel:+60330008858", class: "fw-bold" %>
+            <span class="badge ms-1" data-role="status"></span>
+            <button type="button" class="btn btn-link btn-sm p-0 ms-2" data-action="hotline#copy"
+                    data-hotline-name-param="WAO Hotline" data-hotline-number-param="03-3000 8858">Copy</button>
+          </p>
+        </div>
+        <p class="mb-2">SMS / WhatsApp (TINA): <strong>018-988 8058</strong></p>
+        <p class="card-text small mb-0">Check wao.org.my for the current hotline hours.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-6">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">AWAM Telenita</h5>
+        <p class="text-muted small mb-2">All Women's Action Society helpline.</p>
+        <div data-hotline-target="line" data-name="AWAM Telenita" data-number="016-2374 221">
+          <p class="mb-1">
+            <strong>016-2374 221</strong>
+            <span class="badge ms-1" data-role="status"></span>
+            <button type="button" class="btn btn-link btn-sm p-0 ms-2" data-action="hotline#copy"
+                    data-hotline-name-param="AWAM Telenita" data-hotline-number-param="016-2374 221">Copy</button>
+          </p>
+        </div>
+        <p class="mb-0"><strong>016-2284 221</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-6">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">Emotional support</h5>
+        <div data-hotline-target="line" data-name="Befrienders Malaysia" data-number="03-7627 2929" data-open="0" data-close="24">
+          <p class="mb-1">
+            Befrienders Malaysia (24/7): <%= link_to "03-7627 2929", "tel:+60376272929", class: "fw-bold" %>
+            <span class="badge ms-1" data-role="status"></span>
+          </p>
+        </div>
+        <div data-hotline-target="line" data-name="Talian HEAL" data-number="15555" data-open="8" data-close="24">
+          <p class="mb-0">
+            Talian HEAL (Ministry of Health, 8 am to midnight): <%= link_to "15555", "tel:15555", class: "fw-bold" %>
+            <span class="badge ms-1" data-role="status"></span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<%# Safety tips %>
+<h2 class="h4 mt-5 mb-3">Safety tips</h2>
+<ul class="list-group mb-4">
+  <li class="list-group-item">Keep important numbers and documents somewhere safe.</li>
+  <li class="list-group-item">Plan a safe place you can go to, and how you would get there.</li>
+  <li class="list-group-item">If you can, keep a record of what happens (dates, photos, messages).</li>
+  <li class="list-group-item">Clear your browser history if someone else uses your device.</li>
+  <li class="list-group-item">Press <strong>Esc</strong> or the <strong>Quick Exit</strong> button to leave this website quickly.</li>
+</ul>
+
+<div class="alert alert-secondary small">
+  <strong>Sources:</strong> malaysia.gov.my (Talian Kasih); Women's Aid Organisation
+  (wao.org.my); Kementerian Pembangunan Wanita, Keluarga dan Masyarakat.
+  Numbers can change, so please confirm on the official websites.
+  <%= link_to "Read about the laws", law_enforcement_path, class: "alert-link" %>.
+</div>
+
+</div>

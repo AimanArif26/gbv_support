@@ -1,0 +1,59 @@
+<%# Hero section %>
+<div class="p-5 mb-4 bg-light border rounded-3 text-center">
+  <h1 class="display-5 fw-bold">You are not alone</h1>
+  <p class="lead">
+    Information and support resources on domestic violence and
+    gender-based violence (GBV) in Malaysia, all in one place.
+  </p>
+  <%= link_to "Get help now", hotline_path, class: "btn btn-danger btn-lg" %>
+
+  <%# Lab 3: greeting changes with the time of day (clock_controller.js) %>
+  <p class="text-muted small mt-3 mb-0" data-controller="clock" data-clock-format-value="short">
+    <span data-clock-target="greeting">Hello</span>.
+    It is now <span data-clock-target="time">...</span> in Malaysia.
+    Help lines such as Talian Kasih 15999 are open 24 hours.
+  </p>
+</div>
+
+<%# Cards linking to each section %>
+<div class="row g-4">
+  <div class="col-12 col-md-6 col-lg-3">
+    <div class="card h-100 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">What Is</h5>
+        <p class="card-text">Learn what domestic violence and GBV mean and how to recognise them.</p>
+        <%= link_to "Read more", what_is_path, class: "btn btn-outline-dark btn-sm" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-6 col-lg-3">
+    <div class="card h-100 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">Law Enforcement</h5>
+        <p class="card-text">Understand the laws that protect victims in Malaysia.</p>
+        <%= link_to "Read more", law_enforcement_path, class: "btn btn-outline-dark btn-sm" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-6 col-lg-3">
+    <div class="card h-100 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">Enforcer</h5>
+        <p class="card-text">Find out which agencies enforce the law and help victims.</p>
+        <%= link_to "Read more", enforcer_path, class: "btn btn-outline-dark btn-sm" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-6 col-lg-3">
+    <div class="card h-100 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">Hotline</h5>
+        <p class="card-text">Emergency numbers and helplines you can call for support.</p>
+        <%= link_to "Read more", hotline_path, class: "btn btn-outline-dark btn-sm" %>
+      </div>
+    </div>
+  </div>
+</div>

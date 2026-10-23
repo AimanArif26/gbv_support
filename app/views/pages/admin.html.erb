@@ -1,0 +1,37 @@
+<%# Lab 3: Admin page. Only shown after login (before_action :require_login) %>
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+  <div>
+    <h1 class="mb-0">Admin: Contact messages</h1>
+    <p class="text-muted small mb-0">
+      Logged in as <strong><%= current_user %></strong> since <%= session[:logged_in_at] %>.
+    </p>
+  </div>
+  <%= button_to "Log out", logout_path, method: :delete, class: "btn btn-outline-dark" %>
+</div>
+
+<p class="small text-muted">
+  Messages are read from <code>storage/messages.txt</code>. Total: <strong><%= @messages.size %></strong>.
+</p>
+
+<% if @messages.empty? %>
+  <div class="alert alert-secondary">No messages yet. Messages sent from the Contact page will appear here.</div>
+<% else %>
+  <div class="table-responsive">
+    <table class="table table-striped align-middle">
+      <thead class="table-dark">
+        <tr><th>Sent</th><th>Name</th><th>Email</th><th>Topic</th><th>Message</th></tr>
+      </thead>
+      <tbody>
+        <% @messages.each do |m| %>
+          <tr>
+            <td class="text-nowrap small"><%= m["sent_at"] %></td>
+            <td><%= m["name"] %></td>
+            <td><%= m["email"] %></td>
+            <td><%= m["topic"].presence || "-" %></td>
+            <td class="small"><%= m["message"] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

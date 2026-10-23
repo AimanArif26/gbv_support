@@ -1,0 +1,105 @@
+<h1 class="mb-3">Enforcers and Support Agencies</h1>
+<p class="lead">
+  Several agencies work together to protect victims. This page explains who they
+  are and what each one does.
+</p>
+
+<%# Government enforcers %>
+<h2 class="h4 mt-4 mb-3">Government agencies</h2>
+<div class="row g-4">
+
+  <div class="col-12 col-md-6">
+    <div class="card h-100 border-danger">
+      <div class="card-body">
+        <h5 class="card-title">Royal Malaysia Police (PDRM)</h5>
+        <h6 class="card-subtitle mb-2 text-muted">
+          Sexual, Women and Children's Investigations Division (D11)
+        </h6>
+        <ul class="mb-0">
+          <li>Takes police reports and investigates domestic violence cases.</li>
+          <li>Gives counselling and steps in during a crisis at home or at the hospital.</li>
+          <li>Officers act as Victim Care Officers.</li>
+          <li>Interviews children at the Child Interview Centre.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-6">
+    <div class="card h-100 border-danger">
+      <div class="card-body">
+        <h5 class="card-title">Department of Social Welfare (JKM)</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Under the Ministry of Women, Family and Community Development</h6>
+        <ul class="mb-0">
+          <li>Welfare officers can issue an Emergency Protection Order (EPO), including on weekends.</li>
+          <li>Gives social support and helps victims find protection.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-6">
+    <div class="card h-100 border-danger">
+      <div class="card-body">
+        <h5 class="card-title">Public hospitals: One-Stop Crisis Centre (OSCC)</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Located in public hospitals across Malaysia</h6>
+        <ul class="mb-0">
+          <li>Medical care for survivors of domestic violence, sexual assault and child abuse.</li>
+          <li>Links medical care with police action, so victims do not have to repeat their story to many people.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-6">
+    <div class="card h-100 border-danger">
+      <div class="card-body">
+        <h5 class="card-title">Courts</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Magistrates and judges</h6>
+        <ul class="mb-0">
+          <li>Magistrates issue Interim Protection Orders (IPO).</li>
+          <li>The court issues Protection Orders (PO) during criminal proceedings.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<%# NGO %>
+<h2 class="h4 mt-5 mb-3">Support organisations (NGOs)</h2>
+<div class="card mb-4">
+  <div class="card-body">
+    <h5 class="card-title">Women's Aid Organisation (WAO)</h5>
+    <p class="card-text mb-0">
+      Has provided free shelter, counselling and crisis support to women and
+      children who experience abuse since 1982.
+    </p>
+  </div>
+</div>
+
+<%# How the agencies work together, as a Bootstrap table %>
+<h2 class="h4 mt-5 mb-3">Who to go to for what</h2>
+<div class="table-responsive">
+  <table class="table table-striped align-middle">
+    <thead class="table-dark">
+      <tr>
+        <th>I need to...</th>
+        <th>Go to</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Make a police report</td><td>Nearest police station (PDRM)</td></tr>
+      <tr><td>Get treated for injuries</td><td>OSCC at a public hospital</td></tr>
+      <tr><td>Get an emergency protection order</td><td>Department of Social Welfare (JKM)</td></tr>
+      <tr><td>Get an interim protection order</td><td>Magistrate, through the police</td></tr>
+      <tr><td>Get shelter and counselling</td><td>JKM or a support organisation like WAO</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="alert alert-secondary small">
+  <strong>Sources:</strong> Women's Aid Organisation (wao.org.my); Malay Mail reports
+  on PDRM D11; Domestic Violence (Amendment) Act 2017.
+  <%= link_to "See the hotlines", hotline_path, class: "alert-link" %>.
+</div>

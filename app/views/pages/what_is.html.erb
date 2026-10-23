@@ -1,0 +1,90 @@
+<h1 class="mb-3">What Is Domestic Violence and GBV?</h1>
+
+<%# Introduction %>
+<p class="lead">
+  Domestic violence is a pattern of behaviour used by one person to control or harm
+  another person in a family or close relationship. Gender-based violence (GBV) is
+  harm directed at a person because of their gender.
+</p>
+
+<%# Types of abuse %>
+<h2 class="h4 mt-4 mb-3">Types of abuse</h2>
+<div class="row g-4">
+  <div class="col-12 col-md-6 col-lg-3">
+    <div class="card h-100 border-danger">
+      <div class="card-body">
+        <h5 class="card-title">Physical</h5>
+        <p class="card-text">Hitting, slapping, pushing, choking, or any act that causes bodily harm.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-6 col-lg-3">
+    <div class="card h-100 border-danger">
+      <div class="card-body">
+        <h5 class="card-title">Emotional</h5>
+        <p class="card-text">Insults, threats, humiliation, and isolating a person from family and friends.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-6 col-lg-3">
+    <div class="card h-100 border-danger">
+      <div class="card-body">
+        <h5 class="card-title">Sexual</h5>
+        <p class="card-text">Any sexual act or contact that the person does not agree to, including within marriage.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-6 col-lg-3">
+    <div class="card h-100 border-danger">
+      <div class="card-body">
+        <h5 class="card-title">Financial</h5>
+        <p class="card-text">Controlling money, stopping a person from working, or taking their income.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%# Warning signs, using a Bootstrap accordion %>
+<h2 class="h4 mt-5 mb-3">Common warning signs</h2>
+<div class="accordion" id="signsAccordion">
+  <div class="accordion-item">
+    <h3 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#signs1">
+        Signs in a relationship
+      </button>
+    </h3>
+    <div id="signs1" class="accordion-collapse collapse show" data-bs-parent="#signsAccordion">
+      <div class="accordion-body">
+        <ul class="mb-0">
+          <li>A partner who is extremely jealous or controls where you go.</li>
+          <li>Being cut off from friends and family.</li>
+          <li>Being afraid of your partner's reaction.</li>
+          <li>Being blamed for the abuse, or told it is your fault.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h3 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#signs2">
+        Signs in someone you know
+      </button>
+    </h3>
+    <div id="signs2" class="accordion-collapse collapse" data-bs-parent="#signsAccordion">
+      <div class="accordion-body">
+        <ul class="mb-0">
+          <li>Unexplained injuries, or explanations that do not fit.</li>
+          <li>Pulling away from friends, work or social activities.</li>
+          <li>Seeming anxious, fearful or very quiet around their partner.</li>
+          <li>Changes in mood, sleep or confidence.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%# Call to action %>
+<div class="alert alert-danger mt-5">
+  <strong>Need help?</strong> You do not have to face this alone.
+  <%= link_to "See the hotlines", hotline_path, class: "alert-link" %>.
+</div>

@@ -1,0 +1,92 @@
+<h1 class="mb-3">Contact</h1>
+<p class="lead">Send us feedback or suggestions about this website.</p>
+
+<%# Warning: this form is not for emergencies %>
+<div class="alert alert-danger">
+  <strong>This form is not for emergencies.</strong> If you need help now, call
+  <%= link_to "999", "tel:999", class: "alert-link" %> or see the
+  <%= link_to "hotlines", hotline_path, class: "alert-link" %>.
+</div>
+
+<%# Lab 3: everything inside this div is controlled by contact_form_controller.js %>
+<div class="row" data-controller="contact-form">
+  <div class="col-12 col-lg-8">
+
+    <%# Errors from the JavaScript check are written here with innerHTML %>
+    <div data-contact-form-target="errors" aria-live="polite"></div>
+
+    <%# novalidate: JavaScript does the checking instead of the browser %>
+    <%= form_with url: contact_path, method: :post,
+                  html: { novalidate: true },
+                  data: { contact_form_target: "form", action: "submit->contact-form#submit" } do %>
+      <div class="mb-3">
+        <%= label_tag :name, "Name", class: "form-label" %>
+        <%= text_field_tag :name, nil, class: "form-control", placeholder: "Your name",
+                           data: { contact_form_target: "name" } %>
+      </div>
+      <div class="mb-3">
+        <%= label_tag :email, "Email", class: "form-label" %>
+        <%= email_field_tag :email, nil, class: "form-control", placeholder: "you@example.com",
+                            data: { contact_form_target: "email" } %>
+      </div>
+      <div class="mb-3">
+        <%= label_tag :topic, "Topic", class: "form-label" %>
+        <%= select_tag :topic,
+              options_for_select(["Website feedback", "Report a wrong phone number",
+                                  "Suggest a support organisation", "Other"]),
+              include_blank: "Choose a topic", class: "form-select",
+              data: { contact_form_target: "topic" } %>
+      </div>
+      <div class="mb-3">
+        <%= label_tag :message, "Message", class: "form-label" %>
+        <%= text_area_tag :message, nil, rows: 5, class: "form-control",
+                          placeholder: "Write your message here",
+                          data: { contact_form_target: "message", action: "input->contact-form#count" } %>
+        <%# Live character counter (innerHTML) %>
+        <div class="form-text" data-contact-form-target="counter">0 / 500 characters</div>
+      </div>
+      <div class="form-check mb-3">
+        <%= check_box_tag :acknowledge, "1", false, class: "form-check-input",
+                          data: { contact_form_target: "acknowledge" } %>
+        <%= label_tag :acknowledge, "I understand this form is not for emergencies.",
+                      class: "form-check-label" %>
+      </div>
+      <%= submit_tag "Send message", class: "btn btn-danger",
+                     data: { contact_form_target: "sendButton", turbo_submits_with: "Sending..." } %>
+    <% end %>
+  </div>
+
+  <div class="col-12 col-lg-4 mt-4 mt-lg-0">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Need support?</h5>
+        <p class="card-text small">
+          For help with domestic violence or GBV, please use the support lines
+          instead of this form.
+        </p>
+        <%= link_to "View hotlines", hotline_path, class: "btn btn-outline-dark btn-sm" %>
+      </div>
+    </div>
+  </div>
+
+  <%# Lab 3: Popup dialog. Opened with dialog.showModal() after the form passes the check %>
+  <dialog class="gbv-dialog border-0 rounded-3 shadow p-0" data-contact-form-target="dialog"
+          aria-labelledby="confirmTitle">
+    <div class="p-4">
+      <h2 class="h5 mb-3" id="confirmTitle">Please check your message</h2>
+
+      <%# The summary of what the user typed is written here with innerHTML %>
+      <div data-contact-form-target="summary"></div>
+
+      <div class="d-flex justify-content-end gap-2 mt-4">
+        <button type="button" class="btn btn-outline-secondary" data-action="contact-form#closeDialog">
+          Edit message
+        </button>
+        <button type="button" class="btn btn-danger" data-contact-form-target="confirmButton"
+                data-action="contact-form#confirm">
+          Confirm and send
+        </button>
+      </div>
+    </div>
+  </dialog>
+</div>
