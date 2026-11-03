@@ -1,21 +1,17 @@
 <h1 class="mb-3">Contact</h1>
 <p class="lead">Send us feedback or suggestions about this website.</p>
 
-<%# Warning: this form is not for emergencies %>
 <div class="alert alert-danger">
   <strong>This form is not for emergencies.</strong> If you need help now, call
   <%= link_to "999", "tel:999", class: "alert-link" %> or see the
   <%= link_to "hotlines", hotline_path, class: "alert-link" %>.
 </div>
 
-<%# Lab 3: everything inside this div is controlled by contact_form_controller.js %>
 <div class="row" data-controller="contact-form">
   <div class="col-12 col-lg-8">
 
-    <%# Errors from the JavaScript check are written here with innerHTML %>
     <div data-contact-form-target="errors" aria-live="polite"></div>
 
-    <%# novalidate: JavaScript does the checking instead of the browser %>
     <%= form_with url: contact_path, method: :post,
                   html: { novalidate: true },
                   data: { contact_form_target: "form", action: "submit->contact-form#submit" } do %>
@@ -42,7 +38,6 @@
         <%= text_area_tag :message, nil, rows: 5, class: "form-control",
                           placeholder: "Write your message here",
                           data: { contact_form_target: "message", action: "input->contact-form#count" } %>
-        <%# Live character counter (innerHTML) %>
         <div class="form-text" data-contact-form-target="counter">0 / 500 characters</div>
       </div>
       <div class="form-check mb-3">
@@ -69,13 +64,11 @@
     </div>
   </div>
 
-  <%# Lab 3: Popup dialog. Opened with dialog.showModal() after the form passes the check %>
   <dialog class="gbv-dialog border-0 rounded-3 shadow p-0" data-contact-form-target="dialog"
           aria-labelledby="confirmTitle">
     <div class="p-4">
       <h2 class="h5 mb-3" id="confirmTitle">Please check your message</h2>
 
-      <%# The summary of what the user typed is written here with innerHTML %>
       <div data-contact-form-target="summary"></div>
 
       <div class="d-flex justify-content-end gap-2 mt-4">
