@@ -1,8 +1,6 @@
 class PagesController < ApplicationController
-  # Lab 3: the admin page needs a login (see ApplicationController#require_login)
   before_action :require_login, only: :admin
 
-  # Lab 3: contact messages are saved in this text file (one message per line, as JSON)
   MESSAGES_FILE = Rails.root.join("storage", "messages.txt")
 
   def home
@@ -14,9 +12,6 @@ class PagesController < ApplicationController
   def contact
   end
 
-  # Receives the contact form.
-  # Lab 3: the same rules are checked in JavaScript first (contact_form_controller.js),
-  # and checked again here in case JavaScript is turned off.
   def send_message
     name    = params[:name].to_s.strip
     email   = params[:email].to_s.strip
@@ -47,21 +42,18 @@ class PagesController < ApplicationController
   def hotline
   end
 
-  # Lab 3: GET /admin - lists the saved contact messages, newest first
   def admin
     @messages = read_messages.reverse
   end
 
   private
 
-  # File handling: adds one line to storage/messages.txt
   def save_message(fields)
     FileUtils.mkdir_p(MESSAGES_FILE.dirname)
     record = fields.merge(sent_at: Time.current.in_time_zone("Kuala Lumpur").strftime("%-d %b %Y, %-I:%M %p"))
     File.open(MESSAGES_FILE, "a") { |file| file.puts(record.to_json) }
   end
 
-  # File handling: reads every line of storage/messages.txt back into a list
   def read_messages
     return [] unless File.exist?(MESSAGES_FILE)
 

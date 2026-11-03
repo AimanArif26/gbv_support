@@ -1,18 +1,10 @@
-# Lab 3: Login and logout
-#
-# The allowed users are stored in Password.txt in the project folder,
-# one user per line in the format  username:password
-# (Plain text is only for this lab. A real website would store hashed
-#  passwords in a database, for example with has_secure_password.)
 class SessionsController < ApplicationController
   PASSWORD_FILE = Rails.root.join("Password.txt")
 
-  # GET /login - shows the login form
   def new
     redirect_to admin_path if logged_in?
   end
 
-  # POST /login - checks the username and password
   def create
     username = params[:username].to_s.strip
     password = params[:password].to_s
@@ -31,12 +23,10 @@ class SessionsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   rescue Errno::ENOENT
-    # Error handling: Password.txt is missing
     flash.now[:error] = "Login is not available right now (Password.txt was not found)."
     render :new, status: :unprocessable_entity
   end
 
-  # DELETE /logout - ends the session
   def destroy
     name = current_user
     reset_session
@@ -46,7 +36,6 @@ class SessionsController < ApplicationController
 
   private
 
-  # Reads Password.txt line by line and looks for a matching user
   def valid_user?(username, password)
     File.readlines(PASSWORD_FILE, chomp: true).any? do |line|
       next false if line.strip.empty? || line.start_with?("#")   # skip blank lines and comments
