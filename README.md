@@ -2,7 +2,7 @@
 
 A website about **domestic violence and gender-based violence (GBV) in Malaysia**, built with **Ruby on Rails 8**, **Bootstrap 5** and the **Stimulus** JavaScript framework.
 
-Made by **Ahmad Aiman Arif bin Ahmad Alias** (2025189997, M3CS2666B) for **ITT588 Front-End Technology**, Lab Work 02 and Lab Work 03.
+Made by **Ahmad Aiman Arif bin Ahmad Alias** as a project for my Front-End Technology course.
 
 > In immediate danger in Malaysia? Call **999**. Talian Kasih: **15999** (24 hours).
 
@@ -19,18 +19,18 @@ Made by **Ahmad Aiman Arif bin Ahmad Alias** (2025189997, M3CS2666B) for **ITT58
 | Login | `/login` | Admin login (users are read from `Password.txt`) |
 | Admin | `/admin` | Saved contact messages (login required) |
 
-## Lab Work 02: responsive website
+## Responsive website
 
 - Rails app with a `PagesController`, one action and one view per page, and custom routes
 - Bootstrap from a CDN: responsive navbar (hamburger menu on phones), grid, cards, accordion and tables
 - Shared layout with an emergency 999 banner, navbar and footer
 - Contact form checked on the server with flash messages
 
-## Lab Work 03: JavaScript
+## JavaScript features
 
 All JavaScript is in Stimulus controllers in `app/javascript/controllers/`.
 
-| Requirement | Where |
+| Feature | Where |
 |---|---|
 | HTML form | Contact form with name, email, topic, message and a tick box (`contact_form_controller.js`) |
 | Popup dialog | `<dialog>` that shows the message for checking before it is sent |
@@ -58,4 +58,4 @@ bin/rails server
 
 Then open <http://localhost:3000>.
 
-Test logins are in `Password.txt` (format `username:password`). They are plain text for this lab only. A real website would store hashed passwords in a database.
+Test logins are in `Password.txt` (format `username:password`). They are plain text for demo purposes only. A real website would store hashed passwords in a database.
