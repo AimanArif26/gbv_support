@@ -1,12 +1,3 @@
-// Lab 3: Hotline page
-//
-//  - "Open now" badges worked out from the current Malaysia time
-//    (date and time handling + if / else + comparison operators)
-//  - setInterval() re-checks the badges every minute (event loop)
-//  - "Copy" buttons copy a number and confirm with window.alert()
-//  - "Print my safety card" opens a new window and builds it with document.write()
-//    (if the browser blocks popups, the card is written into a frame on the page)
-//  - console.table() lists every hotline in the browser console
 import { Controller } from "@hotwired/stimulus"
 import { malaysiaHour, formatShortTime, formatLongDateTime, hourLabel } from "lib/time_helpers"
 
@@ -15,9 +6,8 @@ export default class extends Controller {
 
   connect() {
     this.updateStatus()
-    this.timer = setInterval(() => this.updateStatus(), 60 * 1000)   // every minute
+    this.timer = setInterval(() => this.updateStatus(), 60 * 1000)
 
-    // Output method 4: console
     console.info("[Hotline] Support lines on this page:")
     console.table(this.hotlines.map(({ name, number, hours }) => ({ name, number, hours })))
   }
@@ -26,7 +16,6 @@ export default class extends Controller {
     clearInterval(this.timer)
   }
 
-  // Reads every hotline from the data attributes in hotline.html.erb
   get hotlines() {
     return this.lineTargets.map((element) => {
       const { name, number, open, close } = element.dataset
@@ -45,7 +34,6 @@ export default class extends Controller {
     })
   }
 
-  // ---------- Open / closed badges ----------
   updateStatus() {
     const now = new Date()
     const hour = malaysiaHour(now)
@@ -55,7 +43,7 @@ export default class extends Controller {
       const status = this.statusFor(line, hour)
 
       badge.className = `badge ms-1 ${status.css}`
-      badge.innerHTML = status.text                 // Output method 1: innerHTML
+      badge.innerHTML = status.text
     }
 
     this.updatedTarget.innerHTML =
@@ -63,7 +51,6 @@ export default class extends Controller {
       `Badges update every minute.`
   }
 
-  // Control statements decide which badge to show
   statusFor(line, hour) {
     if (line.open === null) {
       return { text: "Check hours on website", css: "text-bg-secondary" }
@@ -76,22 +63,17 @@ export default class extends Controller {
     }
   }
 
-  // ---------- Copy a number ----------
-  // Button: data-action="hotline#copy" data-hotline-number-param="15999"
   async copy({ params: { name, number } }) {
     try {
       await this.copyText(number)
-      // Output method 3: window.alert()
       window.alert(`${name} number ${number} copied. You can paste it into your phone or notes.`)
       console.log(`[Hotline] Copied ${name}: ${number}`)
     } catch (error) {
-      // Error handling: the clipboard can be blocked by the browser
       console.error("[Hotline] Could not copy:", error)
       window.alert(`Sorry, the number could not be copied. Please write it down: ${number}`)
     }
   }
 
-  // Tries the modern Clipboard API first, then an older method as a backup
   async copyText(text) {
     try {
       await navigator.clipboard.writeText(text)
@@ -108,7 +90,6 @@ export default class extends Controller {
     }
   }
 
-  // ---------- Printable safety card ----------
   printCard() {
     const cardWindow = window.open("", "_blank", "width=480,height=640")
 
@@ -116,7 +97,6 @@ export default class extends Controller {
       this.writeCard(cardWindow.document)
       console.log("[Hotline] Safety card opened in a new window with document.write().")
     } else {
-      // Error handling: the popup was blocked, so show the card on this page instead
       console.warn("[Hotline] Popup blocked. Showing the safety card on the page instead.")
       this.previewTarget.classList.remove("d-none")
       this.writeCard(this.previewFrameTarget.contentDocument)
@@ -128,7 +108,6 @@ export default class extends Controller {
     this.previewTarget.classList.add("d-none")
   }
 
-  // Builds the safety card page inside the given document
   writeCard(doc) {
     let rows = ""
     for (const line of this.hotlines) {
@@ -136,7 +115,6 @@ export default class extends Controller {
     }
 
     doc.open()
-    // Output method 2: document.write() builds the whole page
     doc.write(`<!DOCTYPE html>
       <html lang="en">
       <head>
